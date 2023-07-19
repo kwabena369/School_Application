@@ -1,0 +1,4 @@
+#gitignore
+ /node_module
+ /public/Application
+ 
