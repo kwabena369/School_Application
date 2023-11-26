@@ -1,0 +1,81 @@
+<div class="wrapper">
+      <!-- for all the polling displaying
+     them one by one -->
+     
+  <div class="w-fit text-center m-auto 
+  border-b-3 border-b-sky-400 border-solid
+  mb-3
+  p-4
+  bg-green-500
+  rounded-lg
+ text-white  text-3xl">
+  <%=user.StageName %>, Your current poll
+ </div>
+      <div class="main flex flex-wrap items-center space-x-5 justify-center space-y-3">
+           
+         <% if ( typeof new_set_of_them !==null && typeof new_set_of_them !== 'undefined') { %>
+             <% new_set_of_them.forEach(element_big => { %>
+              <% if (element_big._doc.will_end_At >new Date(Date.now()) ) { %>
+
+              <form action="/user_chat/pollings_result" method="post">
+                <!-- here is for a single form -->
+            <div id="<%=element_big._doc.id%>" class="wrapper_single_form_poll
+              border-solid border-2 border-pink-300 w-52
+              h-52
+              justify-center
+               p-1 rounded-lg flex flex-col space-y-3">
+                   <div class="title font-sans p-2 rounded-lg 
+                    text-black text-center  text-xl bg-green-500 ">
+                    <%= element_big._doc.title%>  
+                  </div>
+               
+                   <!--  her remember the poll end in here -->
+                    <span class="bg-red-500 font-sans text-center text-sm p-0.5 rounded-md ">
+                      <small class="text-black text-xl">
+                        <% if (element_big._doc.will_end_At > new Date(Date.now()) ) { %>
+                          <%="Ends On"%> 
+                          <%=element_big._doc.will_end_At.toDateString()%>
+                           <% }else{ %>
+                                 <%="Has Ended"%>
+                                 <% } %>   
+                       </small>
+                    </span>
+                    <!-- here are the choose the user have to choose from  -->
+                     <div class="options_now"> 
+                         <% element_big._doc.Options.forEach(element => { %>
+                        <small>
+    <input type="radio" id="check_btn" 
+      <% if (element_big.he_voted === element) { %>
+        <%="checked"%>
+      <% } %>
+     name="selection_polling"
+     value="<%=element%>_<%=element_big._doc._id%>">
+                            <%=element%>                             
+                        </small>
+                         <% }) %>
+                     </div>
+                     
+                   
+                 </div>
+
+                 <button type="submit" id="save_vote"  class="Save_Vote 
+                 text-center
+                 mt-3 text-xl font-sans 
+                 cursor-pointer bg-green-400 p-2 rounded-md w-full m-auto">
+                    Save VOTE
+                  </button>
+</form>
+<% } %>
+
+
+             <% }) %>
+
+         <% } %>
+         
+      </div>
+     </div>
+  
+
+  <script>
+   
+ </script>

@@ -1,0 +1,71 @@
+     <div
+      class="p-4 text-2xl text-center
+      flex flex-col justify-center space-y-2"> 
+         
+       <span class="font-sans text-xl p-3 rounded-lg bg-black text-white">
+
+        Welcome 
+<% if ( typeof user !== null && typeof user !== 'undefined'){ %>
+  
+     <%= user.First_Name%>
+    </span>
+      
+
+
+
+    
+     
+      <!-- <div class="bg-red-400">
+      <%= massage %>
+     </div> -->
+       
+      <!--  for the section of the status -->
+     <br>
+      <span class="bg-blue-500 p-2 rounded-lg">
+ Current Status 
+       </span>
+       <div class="w-fit p-5
+        font-sans
+         text-3xl
+         rounded-md m-auto
+       <% if (user.status !== "Pending") { %>
+         <%= "bg-green-600" %>
+       <% }else{ %>
+          <%= "bg-red-600" %>
+
+          <% } %>">
+         
+           <%=user.status%> 
+        </div>
+
+         <!-- for for the log out -->
+           
+         <div class="btn_log_In 
+          mt-5
+         w-fit p-10  
+          opacity-10
+          m-auto
+         rounded-lg
+          bg-red-500
+          cursor-pointer
+           text-white">
+               log_Out
+         </div>
+          
+<% } %>
+      </div>
+       <script>
+          let btn_log_In = document.querySelector("btn_log_In");
+          btn_log_In.addEventListener("click",()=>{
+            //   making fetch  to change it
+ fetch("/apply/log_out").then(
+    res => res.json().then(
+    outcome => {
+            if(outcome.result){
+          window.location.href = "/"
+            }
+      }
+    )
+ )             
+          })
+       </script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+     <span
+      id="btn">
+         Hit Me 
+     </span>
+</body>
+</html>
+
+ <script>
+     let btn  = document.getElementById("btn");
+      let  url = "https://sandbox.momodeveloper.mtn.com/v1_0/apiuser" ;
+        let header_value  = {
+               "X-Reference-Id"  : "ff6468cd-6ad2-49fa-82c7-f87d1f043ad1",
+                "Ocp-Apim-Subscription-Key" :
+                 "c3f76b8137ec4803ac00ff19790809bb"
+        }
+   
+        
+      fetch(url,{ method : 'POST',
+      headers:header_value,
+    body : {
+  "providerCallbackHost": "http://localhost:3000/MTN"
+            }
+
+}).then(res =>{
+     console.log(res);
+})
+ </script>

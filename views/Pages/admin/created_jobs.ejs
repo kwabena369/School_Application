@@ -1,0 +1,53 @@
+<% if (typeof all_jobs !== null && typeof all_jobs !== 'undefined') { %>
+
+  <div class="text-2xl bg-blue-500 text-white rounded-lg  p-3 w-fit
+   m-auto ">
+    ........Created Jobs........
+  </div>
+  
+  <div class="all_jobs  
+    border-2 border-solid
+    w-chat_width text-center
+    h-auto
+     border-white
+     text-2xl
+     rounded-md  p-5 flex 
+     flex-col
+     space-x-3
+       m-auto">
+     
+        
+      
+ 
+    <% all_jobs.forEach(element => { %>
+       
+
+  <a href="/admin/speci/?job_id=<%=element._id %>">
+       <span class="bg-pink-500 p-3 
+         rounded-lg
+         w-fit
+         space-x-3
+         mt-3
+          flex flex-row m-auto items-center justify-center">
+           <span>
+  <%= element.Job_title %>
+           </span>
+     
+    
+   <span class="bg-green-400  space-x-3 text-xl flex flex-row items-center 
+   justify-center p-2 rounded-md ">
+   <small class="bg-white w-fit h-fit p-2 rounded-full ">
+    <%=element.So_far_applied %>
+   </small>   
+    <small >
+      Applied 
+    </small>
+   </span>
+   
+  </span>    
+</a>     
+
+   
+<% }) %>
+</div>
+<% } %>

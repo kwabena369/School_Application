@@ -1,0 +1,41 @@
+<% if (typeof all_jobs !== null && typeof all_jobs !== 'undefined') { %>
+  <div class="w-fit text-center m-auto 
+  border-b-3 border-b-sky-400 border-solid
+  mb-3
+  p-4
+  bg-green-500
+  rounded-lg
+ text-white  text-3xl">
+ Available Positions
+ </div>
+ 
+  <div class="all_jobs  
+  border-2 border-solid
+  w-96
+  h-auto
+   border-white
+   rounded-md  p-5 flex 
+   flex-col
+   justify-center
+   items-center
+   gap-2
+   text-center
+    
+   space-x-3
+     m-auto">
+
+  <% all_jobs.forEach(element => { %>
+<a href="/apply/job/?job_id=<%=element._id %>">
+     <span class="bg-black p-3 
+      flex
+      text-white
+       font-sans
+       text-2xl
+       rounded-lg">
+<%= element.Job_title %>
+   
+</span>    
+</a>     
+<% }) %>
+</div>
+<% } %>

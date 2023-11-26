@@ -1,0 +1,271 @@
+
+
+  <!-- the option of the is signup -->
+
+  <!--  here is for the preform for choosing wheather a student -->
+ 
+ 
+ 
+
+  <div class="wrapper
+  w-96
+  h-96
+ rounded-sm
+  bg-transparent
+ m-auto 
+  text-center
+   border-solid
+    border-1
+ ">
+ <h1
+ class="
+ text-center
+  text-3xl
+   bg-orange-300
+    p-2 
+   "
+ > LogIn
+ <br>
+  <span 
+  class="warming-Massage
+   text-sm
+    text-red-700
+     p-1"></span>
+ </h1>
+  
+       <div class="input-form
+          backdrop-blur-2xl
+            p-2 
+         ">
+          
+            <form action="/user/logIn" method="post" 
+            >
+    
+ 
+ 
+ 
+    <!--  here is for the email  -->
+    <div class="input-section
+    w-full
+    p-1
+     border-solid
+     border-black
+      border-b-2
+      m-1 
+    relative
+    "> 
+      <input type="text" name="emailContent" id="emailContent"
+      class="
+       email
+       w-full
+      outline-none
+       bg-transparent
+        border-none
+         text-xl 
+         font-semibold
+      placeholder-black
+          "
+           onblur="checkTosee()"
+      required  placeholder="Email">
+    </div>
+ 
+
+    <div class="input-section 
+       first-pw
+    w-full
+    p-2
+     border-solid
+     border-black
+      border-b-2
+      m-1 
+    relative
+    "> 
+      <input
+       
+       type="password" name="Password" id="GhostPass"
+      class="
+       w-full
+       bg-transparent
+        outline-none
+        border-none
+ 
+   text-xl 
+         font-semibold
+         placeholder-black
+ 
+          "
+           placeholder="Password"
+      required >
+      
+ 
+          
+         <span id="ShowHide" class="show-hide
+         absolute
+          justify-center
+         top-1/4
+          right-2
+           bg-slate-950
+            rounded
+             p-1
+              cursor-pointer
+              text-white
+               mb-3
+          ">
+            show
+         </span>
+         
+    </div>
+ 
+ 
+    <div class="remember-forget
+      flex
+      justify-between
+       m-2
+     ">
+      <span>
+       <input id="rem" class="pl-1
+       " type="checkbox" name="rember me" id="">
+                  
+         <label for="rem">Remember  Me</label> 
+              </span>
+      </div>
+       
+       <!-- here is for the foregeting of the password -->
+          <div class="forget-PW">
+             
+              <span
+              class="
+               hover:text-blue-800 underline
+                 font-medium
+                  text-xl
+                "
+               >
+                <a href="/user/forget">
+                Forgot Password 
+               </a>
+              </span>
+          </div>
+      
+  <div class="btn
+   m-3">
+      <button type="submit"
+      id="sub-btn"
+      class="
+      bg-gray-800
+     text-white
+      p-3
+       rounded-sm
+ 
+      "> Log In</button>
+  </div>
+ 
+  <span class="
+  login
+   block
+  p-2
+   text-black
+ "
+ >
+ 
+ Register Account   <a href="/user/signUp" class="text-blue-800 hover:underline">
+   SignUp
+  </a>
+ </span>  
+            </form>
+           
+             <div class="other-option
+               w-2/3
+                text-2xl
+                 bg-blue-600
+                  text-white
+                h-11
+                 m-auto
+                  rounded-md">
+                <a href="/auth">
+                  Google Options
+                </a>
+             </div>
+             
+       </div>
+  </div> 
+ 
+ <script>
+      
+      const password = document.getElementById("GhostPass");
+      const passwor2 = document.getElementById("GhostPass2");
+ 
+    const showHide = document.getElementById("ShowHide");
+    const typeofthing = password.type
+     
+       showHide.addEventListener("click",()=>{
+         const typeofthing = password.type
+            if(typeofthing ==="password"  ){
+                    password.type ="text";
+                     showHide.innerHTML = "Hide"
+            }else{
+             password.setAttribute("type","password");;
+                     showHide.innerText = "Show"
+            }
+          
+       })
+ 
+ 
+       const subbtn  = document.getElementById("sub-btn");
+  const warningMassage = document.querySelector(".warming-Massage")
+       //  here is the implementating of the checktosee
+       warningMassage.innerText = ""
+         function checkTosee(){
+           warningMassage.innerText = ""
+            const emailContent = document.getElementById("emailContent").value
+            
+         
+            fetch(`/user/check-email?email=${emailContent}`).then(
+        res =>
+       res.json()
+         ).then(
+              data =>{
+                 if( data.isthere){
+    warningMassage.innerText = "Email is in the systme"
+        subbtn.disabled =  false
+                  }else{
+                   warningMassage.innerText = "GoGo"
+                   subbtn.disabled =  true
+ 
+    }
+   } 
+    
+               )               
+         }
+          
+ 
+          const firstpw = document.querySelector(".first-pw")
+ 
+        
+           const email =  document.getElementById("emailContent"); 
+             email.oninput=()=>{
+                   // here is for the style
+                    let pattern = /\S+@\S+\.\S+/
+                     if(pattern.test(email.value)){
+                       email.parentElement.classList.toggle("border-green-500")
+                  email.parentElement.classList.remove("border-red-800");
+                     }else{
+                       email.parentElement.classList.remove("border-green-500");
+               email.parentElement.classList.add("border-red-800")
+ 
+                     }
+                
+             }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             
+ 
+     
+     
+ </script>

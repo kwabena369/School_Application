@@ -1,0 +1,127 @@
+ 
+ 
+ 
+   
+ 
+ 
+ <div class=" bg-admin_thing backdrop-blur-3xl backdrop-grayscale 
+ flex-auto bg-cover h-screen 
+  bg-center bg-transparent bg- bg-no-repeat space-y-2">
+   
+  <h1 class="text-center 
+  border-300
+   border-b border-solid border-pink-400
+   p-2 
+    m-auto w-full text-white font-semibold text-3xl t"> 
+  Master's Working Place
+   </h1>  
+  <div class="btns_admin  rounded-md 
+  flex 
+  flex-wrap
+  w-auto
+  h-auto
+   p-4 m-auto 
+     gap-3
+     ">
+      
+     
+     <span 
+      class="bg-blue-500
+      text-center
+        w-fit
+        rounded-md
+         cursor-pointer
+        text-2xl
+         text-white
+         p-4">
+          <a href="/admin/create_jobs">
+            CREATE JOB
+          </a>
+         </span>
+
+         <span 
+         class="bg-blue-500
+         text-center
+           rounded-md
+           w-fit
+         cursor-pointer
+           text-2xl
+            text-white
+            p-4">
+             <a href="/admin/created_jobs">
+               VIEW CREATED JOBS
+              </a>
+            </span>
+          
+          <!-- for crating a polling system -->
+   
+          <span 
+          class="bg-blue-500
+          text-center
+            w-fit
+            rounded-md
+             cursor-pointer
+            text-2xl
+             text-white
+             p-4">
+              <a href="/admin/create_polls">
+         CREATE POLL
+               </a>
+             </span>
+           
+              
+              <!--  here for view the created polling -->
+              <!-- /all_current_poll -->
+               
+              <span 
+              class="bg-blue-500
+              text-center
+                w-fit
+                rounded-md
+                 cursor-pointer
+                text-2xl
+                 text-white
+                 p-4">
+                  <a href="/admin//all_current_poll">
+             VIEW CREATED POLLS
+                   </a>
+                 </span>
+                
+               
+      
+     
+              <!--  people chat -->
+            </div>
+          
+             <div class="w-full flex flex-row justify-center">
+               
+         <span 
+         class="bg-pink-400
+         text-center
+           rounded-md
+           w-fit
+         cursor-pointer
+           text-2xl
+            text-white
+            relative
+            p-4">
+              
+             
+             <!--  for the number of notification  -->
+
+              <span class="bg-red-700 rounded-full
+               text-center
+                 absolute -top-7 right-0 p-3
+                 ">
+ <% if ( typeof Number_Unread !== null && typeof Number_Unread !== "undefined") { %>
+   <%= Number_Unread %>
+ <% } %>                 </span>
+
+               
+             <a href="/admin/people_chat">
+               Parent Chats
+              </a>
+            </span>
+    
+          </div>
+ </div>

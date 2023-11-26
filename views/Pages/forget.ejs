@@ -1,0 +1,147 @@
+ 
+  <style>
+    .input-section input:focus ,
+    .input-section input:valid~ label{
+           top: -8px;
+            
+             font-size: 12px;
+       }
+  </style>
+  
+  <div class="w-screen
+  bg-none
+   flex 
+    items-center
+     h-full2
+     ">
+ <div class="wrapper
+ w-96
+ h-96
+rounded-sm
+ bg-transparent
+m-auto 
+ text-center
+  border-solid
+   border-1
+">
+<h1
+class="
+text-center
+ text-3xl
+  bg-orange-300
+   p-2 
+  "
+> SignUp
+<br>
+ <span 
+ class="warming-Massage
+  text-sm
+   text-red-700
+    p-1"></span>
+</h1>
+ 
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+           <form action="/user/forget" method="post" 
+           >
+   <!--  here is for the email  -->
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text" name="emailContent" id="emailContent"
+     class="
+      email
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+         "
+          onblur="checkTosee()"
+     required >
+       <label for="Email"
+
+       class="
+       pointer-events-none
+       absolute
+       top-1/4
+        left-2
+         translate-y--1/2
+          
+
+          duration-150
+           ease-in-out
+      "
+       >Email</label>
+   </div>
+
+ <div class="btn
+  m-3">
+     <button type="submit"
+     id="sub-btn"
+     class="
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     "> Recorver Password</button>
+ </div>
+
+ <span class="
+ login
+  block
+ p-2
+  text-black
+"
+>
+
+Don't have account ? <a href="/user/signUp" class="text-blue-800 hover:underline">
+  Sign Up for Free
+ </a>
+</span>  
+           </form>
+         
+      </div>
+ </div> 
+</div>
+
+<script>
+     
+  
+      const subbtn  = document.getElementById("sub-btn");
+ const warningMassage = document.querySelector(".warming-Massage")
+      //  here is the implementating of the checktosee
+      warningMassage.innerText = ""
+        function checkTosee(){
+          warningMassage.innerText = ""
+           const emailContent = document.getElementById("emailContent").value
+         fetch(`/user/check-email?email=${emailContent}`).then(
+       res =>
+      res.json()
+        ).then(
+             data =>{
+                if( data.isthere){
+   warningMassage.innerText = "Email is in the systme"
+       subbtn.disabled =  false
+                 }else{
+                  warningMassage.innerText = " Email is not in the DB"
+                  subbtn.disabled =  true
+           }
+  } 
+   
+              )               
+        }
+
+
+    
+</script>

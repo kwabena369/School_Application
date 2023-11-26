@@ -1,0 +1,52 @@
+<div id="wrapper" class="wrapper
+ bg-black rounded-md p-3 text-center h-full
+  w-2/3
+   m-auto
+    flex
+    items-center
+     "> 
+     <!-- here for the alert -->
+     
+      <div id="alert" class="alert
+       w-full m-2 rounded-md  
+       ">
+        <% if (typeof user !== null && typeof user !=='undefine') { %>
+              <span>
+                 <%= user.Userhandle %> are you sure to log out
+              </span> <br>
+               
+             <div class="btns flex items-center justify-between">
+                 <span class="bg-green-300
+                  cursor-pointer
+                  rounded-lg p-2">
+                     Yes
+                 </span>
+                 <span class="bg-red-500
+                  cursor-pointer
+                 rounded-lg p-2">
+                      No
+                 </span>
+             </div>
+        <% } %>
+      </div>
+</div> 
+ 
+ <!-- and there you have it the event deligation  --> 
+  <script>
+      let parent = document.getElementById("alert")
+       console.log(parent)
+        parent.addEventListener("click",(event)=>{
+              let thing = event.target.innerText.replace("/\s/g",'');  
+            //   console.log(thing)
+             if(thing !== "Yes" && thing !=="No"){
+                 console.log("there is nothing click");
+             }else{
+        fetch(`/user/${thing}/log_out`).then(res =>{
+            //  this is for the redirection to the general page
+               if(res.redirected){
+                  window.location.href = res.url                 
+               }
+                 })
+             }
+        })
+  </script>

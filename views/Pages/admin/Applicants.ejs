@@ -1,0 +1,88 @@
+
+
+ 
+  
+   
+    
+     
+      <div class="flex flex-col bg-white ">
+         
+
+
+         <% if (typeof listT !== null && typeof listT !== 'undefined' ) { %>
+  <div class="bg-pink-400 rounded-lg p-4 m-auto font-sans text-2xl">
+    <%= job_now.Job_title %> Applicants
+  </div>
+           
+              <% listT.forEach(element => { %>
+
+<!-- for a line of user -->
+                <span 
+              class="bg-lime-400
+               w-fit  
+                m-auto
+                 mt-3
+                p-2 
+               rounded-md">
+              
+              
+              <!-- for the name  -->
+                <span class="name_Applicant
+                  text-black">
+             <%= element.First_Name %>  <%= element.Last_Name %>
+                </span>  
+              
+              
+                <!-- time of creation Creation -->
+                <span class="time_Create
+                  bg-blue-500
+                  m-2
+                   p-1
+                    rounded-md
+                   text-sm">
+        <% let timecreated  = new Date(element.createdAt) %> 
+        <%  let year  = timecreated.getFullYear() %> 
+        <%  let month = timecreated.getMonth()+1%> 
+        <%  let day = timecreated.getDate()+1%> 
+          <!-- finally ouput the Date -->
+                <%= day %>/<%= month %>/<%= year %>
+                  </span>
+                 
+                  <!-- btn for review -->
+              <span>
+                 <a
+                 class="cursor-pointer bg-pink-600 p-2 rounded-md" 
+                  href="/admin/one_applicant/?applicant_id=<%= element.id%>">
+                <%= element.checked %> 
+                </a>
+                 
+                 <a href="" class="m-3 bg-white rounded-lg p-2 text-xl">
+                   <%= element.status %>
+                 </a>
+               
+              </span>  
+              
+                 
+             </span>
+                 
+              <% }) %>
+
+              <a href="/admin/C_N_F/<%=job_now.Job_title%>">
+              <div class="w-fit text-center m-auto 
+border-b-3 border-b-sky-400 border-solid
+mb-3
+p-4
+bg-green-500
+rounded-lg
+text-white  text-3xl">
+Close_And_Finalize Now
+</div>
+</a>
+               
+             <% } %>
+          
+              
+                <!-- for the btn for  for the finallization  -->
+  
+          
+      </div>

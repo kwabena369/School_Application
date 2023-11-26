@@ -1,0 +1,67 @@
+<!-- here is for the admin to get to see all the chat -->
+ 
+   <div class="w-fit m-auto bg-black mb-3 text-2xl text-white font-sans p-4 rounded-lg
+      text-center ">Parent Who chat with Master</div>
+ <div class="main-wrapper">
+     
+
+ 
+ <div class="chat_sub-wrapper
+  w-96
+   h-fit
+   pt-5
+   pb-5
+    rounded-lg
+   border-solid
+     border-2
+     border-pink-500
+      m-auto
+
+        flex
+        flex-col
+        gap-2
+     ">
+     <% if (typeof all_staff !== null && typeof all_staff !== 'undefined') { %>
+
+      <% all_staff.forEach(element => { %>
+       
+        <div class="bg-none pl-3 m-4 w-fit rounded-md text-center">
+             
+
+
+  <a class="flex flex-row space-x-2" href="/admin/the_chat/?user_id=<%=element.User_Room.id%>">
+      <span>
+    <img src="<% if (element.User_Room.userProfile !== "") { %>
+       userProfile/<%=element.User_Room.userProfile %>
+    <% } else{%>
+     <%="/Default-Profile.png "%>
+     <% } %>"
+     id="Current-Prof"
+      class="
+      w-14
+       border-2 
+        border-solid
+        border-purple-400
+        rounded-full
+         "
+
+         alt="">
+           
+      
+      </span>
+     <span class="bg-blue-500 font-sans text-xl p-2 rounded-lg ">
+      <%= element.User_Room.StageName%>
+     </span>
+       
+         </a>
+        </div>
+
+
+      <% }) %>
+        
+         
+
+
+     <% } %>
+ </div>
+</div>

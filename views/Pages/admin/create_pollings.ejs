@@ -1,0 +1,173 @@
+<!--  for this we let admin fill
+ ---deadline for the poll
+ ---the name of the poling
+ --- the various option which are allow there
+ {
+     -- yes
+      --- no
+       -- maybe 
+        --- against it 
+ } -->
+  
+  
+
+   <div class="wrapper_polling flex flex-col
+    justify-center
+     w-fit p-10
+     m-auto
+     items-center space-x-4
+     border-2 border-solid rounded-lg
+      border-blue-500"> 
+      
+     <!-- for the titile -->
+      <span class="create_poll_form font-serif text-2xl text-pink-400">
+         POLLING _ CREATION 
+      </span>
+      
+      <div class="title w-64 p-0.5 border-2 border-solid border-pink-400 
+      rounded-lg">
+         <div contenteditable id="polling_titile"
+          class=" w-full m-auto bg-slate-200 outline-none placeholder-black" 
+       >
+      </div>
+      </div>
+     
+       <!-- for the data -->
+      <div class="title w-64 p-0 border-solid border-2 
+       bg-orange-100 m-3 rounded-md border-purple-500">
+        <input type="number" id="polling_date" class=" 
+        w-full h-full m-auto placeholder-black p-3
+         bg-transparent outline-none border-none" 
+         
+        placeholder="Number of day">
+         <!-- here brcuase of reason the admin is going  -->
+     </div>
+      
+      <!--  here is the  section of adding the option the person would
+     like to accept  -->
+       
+      <div class="wrapper_option_i_want 
+         flex
+         space-x-2
+items-center
+          justify-center
+        flex-col 
+        rounded-lg">
+         <!--  space for the option  -->
+           <div class="space_option bg-blue-400  border-2
+           border-solid rounded-lg"> 
+             
+            
+           <!-- here that the option are going to be going  -->
+           </div>
+               
+            <!-- the space for the input  -->
+             <small class="font-sans text-xl p-1">Type_Option_Down</small>
+           <div id="input_section_options" 
+           contenteditable class="input_place
+             border-2 border-t border-solid  border-pink-200
+              rounded-lg
+              w-32
+              p-3
+               outline-none
+              bg-pink-200 text-white"> 
+          </div>
+          
+             <span class="bg-orange-400 
+             mt-2
+              cursor-pointer p-3  w-fit
+                  m-auto rounded-md" id="Add_them_now">
+                    Add option . eg .No,Yes
+                </span>
+
+      </div>
+    
+       <!-- here the btn for the saving of the created 
+        polls -->
+      
+         <div id="save_polling" class="created_polling 
+          bg-blue-400 rounded-lg w-44 m-2 text-center font-sans text-2xl p-2">
+          SAVE
+         </div>
+   </div>
+
+   <!-- here is the script for 
+    the addition of the view thing -->
+
+    <script>
+         let Add_them_now  =document.getElementById("Add_them_now"); 
+        //  main container of the option space_option
+          let space_option = document.querySelector(".space_option");
+          
+             // herer is the array of the pollings
+              let array_polling = []; 
+
+
+          Add_them_now.addEventListener("click",()=>{
+            //   getting the current value in ther
+            let input_section_options  = document.getElementById("input_section_options").innerText
+          
+            document.getElementById("input_section_options").innerText = ''
+            //   adding it to the section of the option 
+              let _now_option_warpper = document.createElement("div");
+                 _now_option_warpper.classList.add("w-fit","p-2","m-1",
+                 "text-2xl")
+                   _now_option_warpper.innerText = input_section_options
+                     
+                    // adding it to the array 
+                     array_polling.push(input_section_options);
+                      
+
+            //    for the cancle btn to remove it form there 
+                let cancle =  document.createElement("span");
+                 cancle.classList.add("bg-black","rounded-full","w-2","h-2",
+                 "p-1","text-sm","text-white","m-1")
+                  cancle.innerText = "X"
+        //  when there is a clikc on the X
+            cancle.addEventListener("click",(event)=>{
+                //  Then find the parent  
+                 let parent_tobe_removed = event.target.parentNode.innerText
+                  // then remove it 
+                   event.target.parentNode.remove();
+                //  find the content in there
+                  let ind_now =  array_polling.indexOf(parent_tobe_removed);
+                //   remove it from the array to be 
+                 array_polling.splice(ind_now,1);
+            })
+             
+             
+            //  for the thing of ---
+            _now_option_warpper.appendChild(cancle);
+            space_option.appendChild(_now_option_warpper); 
+             
+         })
+
+
+//  here is when the save polling 
+  let save_polling = document.getElementById("save_polling"); 
+   
+   save_polling.addEventListener("click",()=>{
+      //  getting all the innere value of things
+       let polling_date = document.getElementById("polling_date").value;
+       let polling_title =
+        document.getElementById("polling_titile").innerText;
+       let all_mega = {
+          array_p : array_polling,
+           pol_title : polling_title,
+           pol_date : polling_date,
+       }
+       
+       fetch("/admin/create_poll",{
+        method : "POST",
+         headers : {"Content-Type":"application/json"},
+          body :JSON.stringify(all_mega),
+       }).then(res =>{
+         if(res.redirected){
+            window.location.href = res.url
+         }
+       })
+        
+   })
+ 
+
+    </script>

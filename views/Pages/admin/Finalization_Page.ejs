@@ -1,0 +1,50 @@
+<!--  here is the page where master 
+  is going to be doing the bulk sending of the email
+-->
+  <div class="wrapper_mega_thing flex flex-row w-fit m-auto border-2  
+   border-solid border-pink-400 rounded-lg p-3 ">
+      
+     <% if (typeof _accepted_names !== null && typeof _accepted_names !== 'undefined') { %>
+         
+          <div class="_accepted_group flex flex-col
+            space-y-2 border-r-2 border-r-black border-solid">
+         <span class="bg-pink-400 font-sans  text-xl  p-3 text-center w-fit m-auto rounded-lg " >
+           Accepted Swad 
+         </span>
+             <% _accepted_names.forEach(element => { %>
+              <span class="_one_instance bg-green-400 rounded-lg p-3 m-1">  
+                <%= element %>
+            </span>
+          <% }) %>
+         </div>
+     <% } %>
+
+     <% if (typeof NOT_accepted_names !== null && typeof NOT_accepted_names !== 'undefined') { %>
+         
+      <div class="_accepted_group flex  flex-col space-y-2 justify-start items-center">
+        <span class="bg-pink-400 p-2  font-sans text-xl text-center 
+        w-fit m-auto rounded-lg " >
+          Not_accepted Swad 
+        </span>
+        <% NOT_accepted_names.forEach(element_Now => { %>
+          <span class="_one_instance bg-green-400 rounded-lg p-3 m-1">  
+            <%= element_Now %>
+          </span>
+        <% }) %>
+       </div>
+   <% } %>
+   <div class="w-fit text-center m-auto 
+   border-b-3 border-b-sky-400 border-solid
+   mb-3
+    terminate_all_btn
+   p-4
+   bg-green-500
+   rounded-lg
+  text-white  text-3xl">
+ <!-- here is the btn for the terminating of all thing  -->
+  This Job Section is Terminated
+ </div>
+     
+  </div>
+
+  

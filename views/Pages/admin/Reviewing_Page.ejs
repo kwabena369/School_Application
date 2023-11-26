@@ -1,0 +1,97 @@
+ 
+
+  <% if (typeof applicantNow !== null && typeof applicantNow !== 'undefined') { %>
+
+    
+  
+<div class="weapper
+  p-10 flex flex-col items-center justify-center space-y-4">
+     <span class="applicant-name bg-pink-600 font-sans text-2xl w-fit m-auto p-2 rounded-lg"> 
+<span class="  border-b-2 border-solid text-white border-b-blue-500">
+    <%= applicantNow.First_Name %>-<%= applicantNow.Last_Name %>,
+</span>Applicant Materials
+           
+     </span> 
+      
+     <br>
+      <div>
+
+     <a href="/admin/file/<%= applicantNow.Filename%>"> 
+      <span class=" border-b-3 border-solid border-b-sky-300 font-sans 
+      bg-yellow-200 rounded-lg p-3">
+             click to download or read letter
+      </span>
+    </a>
+
+      <input type="text" id="id" class="hidden" value="<%=applicantNow.id%>">
+    </div>
+
+      <!--  a set of btn for the declining and the accepting -->
+     
+      <span class="border-b-2 border-b-red-400 font-sans text-2xl">
+         click any of the following to take decision
+      </span>
+       
+       <div
+        id="parent_action_btn"
+        class="flex items-center mt-4 flex-row gap-2 text-white 
+        font-sans text-xl">
+      
+        <span class=" bg-green-600 rounded-lg p-3 accept cursor-pointer">
+         Accept
+       </span>
+
+       <span class=" bg-red-600  rounded-lg p-3  decline cursor-pointer">
+        Decline
+      </span>
+
+      <span class="bg-blue-400 rounded-lg p-3 pending cursor-pointer">
+      Pending
+       </span>
+      </div>
+       
+       <div 
+       id="save"
+       class="bg-green-500 m-4 cursor-pointer rounded-lg text-xl p-2">
+       Save_Action 
+    </div>
+     
+</div>
+
+<% } %>
+<script>
+  //   here is for the btn involve
+  let parent_btn = document.getElementById("parent_action_btn"); 
+  let applicant_id = document.getElementById("id").value; 
+  let save = document.getElementById("save")
+  parent_btn.addEventListener("click",(event)=>{
+    //   event delegation 
+    let element_clicked = event.target.innerText.replace("/\s/g","");
+    
+    console.log(applicant_id)
+      
+    save.addEventListener("click",()=>{ 
+     if(element_clicked !== null){
+       console.log(element_clicked);
+        // fetch for the chaning ofthe 
+  fetch(`/admin/tea/?action_Now=${element_clicked}&id=${applicant_id}`,{
+    method :'POST'
+  }).then(res => {
+    if (res.redirected) {
+      // Perform the redirect using the response URL
+      window.location.href = res.url;
+    } else {
+      // Handle the response normally
+      res.json().then(data => {
+        console.log(data);
+      });
+    }
+  });
+       
+     }
+
+ })
+     
+  })
+   
+</script>

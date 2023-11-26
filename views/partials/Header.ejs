@@ -1,0 +1,467 @@
+<!--  here is for the header  -->
+ 
+<header
+class=" 
+flex
+top-0
+left-0
+box-border
+
+text-white
+items-center
+h-fit
+ 
+justify-between
+ w-full
+ bg-black
+   p-2
+  "
+  
+> 
+
+
+ <!-- here is the display of the -->
+ <div class="three-btn
+ transition-transform duration-300
+    hidden 
+  small:inline
+     "
+  >
+    <div class="line1
+     w-10
+     mt-1
+      bg-pink-200
+      h-1
+      rounded            
+duration-150
+ease-in-out
+       "></div>
+       <div class="line2
+       w-5
+       mt-1
+       bg-pink-200
+       h-1
+         
+      rounded
+      duration-150
+ease-in-out
+         "></div>
+         <div class="line3
+         w-10
+         mt-1
+         bg-pink-200
+         h-1
+      rounded
+duration-150
+ease-in-out"></div>
+    
+ </div>
+
+
+<a href="/" class="
+text-4xl
+font-semibold
+p-3
+pr-7
+small:text-3xl
+"> Texas Academy </a>
+
+
+
+
+<!-- here is for the nav bar -->
+ <nav
+  class="
+    hidden larger:inline
+     transition-transform 
+      box-content
+       pr-5
+   ">
+   <a href="/prototype/all" class="
+   hover:bg-white hover:text-black
+   text-white
+    bg-black
+   outline-none
+    rounded
+    p-1
+     text-xl
+           font-normal 
+            ml-2
+    "> About us</a>
+
+      <!--  here is going to be the optional section on the page  -->
+
+      <% if (typeof user !== 'undefined' && user !== null ) { %>
+     
+       
+         <input type="text" class="hidden" id="user_id_place" value="<%=user._id%>">
+         <label for="prof_user_here">
+         <img src="
+           <% if (user.userProfile !== "") { %>
+             userProfile/<%= user.userProfile %>
+           <% } else{%>
+            <%="/Default-Profile.png "%>
+            <% } %>
+         "
+           id="toper"
+          class="
+          inline
+           rounded-s-full
+            m-2
+             w-9" alt="">
+            </label>
+         
+           <a
+             id="chat_btn"
+            class="
+            
+            hover:bg-white hover:text-black
+            text-white
+            p-0.5
+               text-2xl
+                     font-normal 
+                      ml-2
+                      outline-none
+                      bg-blue-500 
+                       rounded-full
+                      text-center
+                       w-10 h-10 
+                "
+                 href="/chat/sch"
+                 >
+                 <i class="material-icons">chat_bubble</i>Us            <input id="prof" type="file" name="profile-image-form" class="Beans  hidden">
+      </a>
+
+  <!-- btn for the poll -->
+        
+  <a
+  id="available_poll"
+ class="
+ hover:bg-white hover:text-black
+ text-red-500
+  bg-black
+ rounded
+ p-1
+    text-2xl
+          font-normal 
+           ml-2
+           outline-none
+     "
+      href="/user_chat/available_poll"
+      >
+       Vote
+</a>
+       <% }else{%>
+         
+
+       <span id="chat_btn" class="hidden">
+       </span>
+     
+
+    <a href="/About" class="
+
+      
+       hover:bg-white hover:text-black
+     text-white
+      bg-black
+        
+    rounded
+    p-1
+     outline-none
+     text-xl
+           font-normal 
+            ml-2
+     ">Contact us</a>
+
+     <a 
+     
+     href="/apply/" class="
+          hover:bg-white hover:text-black
+     text-white
+      bg-black
+     rounded
+     p-1
+      
+        text-xl
+        outline-none
+              font-normal 
+               ml-2
+      ">Jobs</a>
+   <% } %>
+    
+ </nav>
+</header>
+
+<div class="menu
+hidden 
+  absolute 
+   larger:hidden
+   top-24
+  left-0
+   w-1/3
+   h-80
+    bg-transparent
+     backdrop-blur-0
+    duration-200
+  text-white 
+  text-2xl 
+    ease-in-out
+ z-50
+">
+ <% if (typeof user !== 'undefined' && user !== null ) { %>
+ <div class="
+  flex
+   flex-col
+   m-4
+items-center
+   ">
+    <label for="prof_user_here" 
+     class="
+       block
+       cursor-pointer">
+    <img src="<% if (user.userProfile !== "") { %>
+       userProfile/<%=user.userProfile %>
+    <% } else{%>
+     <%="/Default-Profile.png "%>
+     <% } %>"
+
+
+    
+     id="Current-Prof"
+      class="
+      w-12
+         "
+style="border-radius: 50%;
+border: 3px solid rgb(58, 55, 55);
+box-shadow: 1px 1px 2px rgb(36, 36, 36),
+             -1px -1px 1px rgb(187, 187, 187)
+                                     ;
+"
+         alt="">
+           
+        </label>
+          <input id="prof_user_here" type="file" name="profile-image-form"
+           class="Beans  hidden"/>
+<span
+class="
+ text-xl
+ text-white
+ font-extrabold
+ underline
+ uppercase
+ cursor-pointer
+  "> 
+  <%=user.StageName%>
+</span>
+
+
+    
+ </div>
+  <!-- for the link -->
+  <div class="flex flex-col space-y-2
+      m-6
+       text-sm
+        small:text-xs
+        text-white">
+     
+           <a href="/sch-store" class="bg-pink-500 p-1 rounded
+           hover:bg-slate-900">
+             School-Store
+          </a>
+
+          <a
+          id="chat_btn"
+         class="
+         hover:bg-white hover:text-black
+         text-white
+          bg-black
+         rounded
+         p-0.5
+            text-2xl
+            w-fit
+                  font-normal 
+                   ml-2
+                   outline-none
+             "
+              href="/chat/sch"
+              >
+              
+              <i class="material-icons">chat_bubble</i>Us       
+                   <input id="prof" type="file" name="profile-image-form" class="Beans  hidden">
+              <input id="prof" type="file"
+             name="profile-image-form" class="Beans  hidden">
+   </a>
+   <a
+   id="available_poll"
+  class="
+  hover:bg-white hover:text-black
+  text-white
+   bg-black
+  rounded
+  p-1
+     text-2xl
+           font-normal 
+            ml-2
+            outline-none
+      "
+       href="/user_chat/available_poll"
+       >
+        Take_poll
+ </a>
+
+           <a href="/user/<%=user.id%>" class="bg-pink-500 p-1 rounded
+           hover:bg-slate-900">Log_Out</a>
+  </div>
+  <% }else{%>               
+
+    <div class="flex flex-col space-y-2
+    m-6">
+   
+     
+     <a href="/" class=" p-1 rounded
+           hover:bg-slate-900">
+            Home
+          </a>  
+ 
+          
+           <a href="/user/signUp" class=" p-1 rounded
+           hover:bg-slate-900">Free Accout</a>
+           <a href="/user/logIn" class=" p-1 rounded
+           hover:bg-slate-900">Log In</a>
+           <a href="#" class=" p-1 rounded
+           hover:bg-slate-900">Contact US</a>
+          
+           <a href="#" class=" p-1 rounded
+           hover:bg-slate-900">About Us</a>
+           
+            
+
+</div>
+     
+
+     <% } %>
+
+</div>
+
+<div class="fixed top-0 left-0 w-full h-full
+bg-black opacity-50 z-20 hidden
+overlay"></div>
+
+ 
+
+ 
+
+  <script>
+    // for the animation of the line of the btn 
+const line1  =document.querySelector(".line1")
+const line2  =document.querySelector(".line2")
+const line3  =document.querySelector(".line3")
+    //   for the menu 
+      let menuthing = document.querySelector(".menu");
+      // for the  overlay thing
+       let overlay  =  document.querySelector(".overlay");
+        // here is for the btn 
+         let btn  = document.querySelector(".three-btn ");
+
+
+
+         btn.addEventListener("click",()=>{
+           
+             line1.classList.add("-translate-y-2","rotate-45")
+               line2.classList.add("hidden")
+                 line3.classList.add("-translate-y-4","-rotate-45")
+
+           
+      menuthing.classList.toggle('hidden');
+      overlay.classList.toggle('hidden');
+menuthing.classList.add('transform', 'translate-x-full');
+setTimeout(() => {
+menuthing.classList.remove('translate-x-full');
+menuthing.classList.add('translate-x-0');
+}, 100);
+     }) 
+
+     
+     
+document.addEventListener("click",(event)=>{
+ const targetName = event.target
+    if(targetName === overlay){
+      line1.classList.remove("-translate-y-2","rotate-45")  //for other case
+       line2.classList.toggle("hidden") // for other case 
+      line3.classList.remove("-translate-y-4","-rotate-45") // for other case
+      menuthing.classList.toggle('hidden');
+      overlay.classList.toggle('hidden');
+    }
+})
+      
+      
+      //  here is for the uploading of  the image file 
+       const inputProfile  =  document.getElementById("prof_user_here");
+        const currentProfile = document.getElementById("Current-Prof");
+        const currentProfile2 = document.getElementById("toper");
+        const useridNow =  document.getElementById("user_id_place").value
+
+        
+  
+         if(useridNow !== null){
+           
+        
+        inputProfile.addEventListener("input",()=>{
+          //  here we do the sending and the setting
+               const ProfData = inputProfile.files[0]
+            //   creating the form 
+             const formData = new FormData();
+
+
+
+inputProfile.addEventListener("change",()=>{
+const ProfData = inputProfile.files[0]
+// here is for the live previewing of the thing
+const reader = new FileReader();
+reader.addEventListener("load",()=>{
+  currentProfile.src = reader.result
+  currentProfile2.src = reader.result
+   })
+
+
+reader.readAsDataURL(ProfData);
+})
+
+
+              formData.append("user-Profile",ProfData);
+              //  sending it 
+          fetch(`/userProfile/${useridNow}`,{
+             method  : 'POST',
+             body :  formData
+          })
+        })
+
+      }
+
+
+      // // here is the clicking on the preform thing
+      //  const preRegForm = document.querySelector(".pre-form");
+      //   const preRegFormbtn = document.querySelector(".preRegformbtn")
+
+      //    preRegFormbtn.addEventListener("click",()=>{
+      //         preRegForm.classList.toggle("hidden")
+      //    })
+
+
+      //  when the chatbtn is hit
+       
+       let chatbtn = document.getElementById("chat_btn");
+        chatbtn.addEventListener("click",()=>{
+            // doing the fetching
+      fetch("/chat/sch").then(
+         res =>{
+           if(res.redirected){
+              window.location.href = res.url
+           }
+         }
+      )
+           })
+            
+
+          
+  </script>

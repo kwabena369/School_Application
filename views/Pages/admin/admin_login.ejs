@@ -1,0 +1,250 @@
+
+
+  <!-- the option of the is signup -->
+
+  <!--  here is for the preform for choosing wheather a student -->
+ 
+ 
+ 
+ 
+ <div class="wrapper
+ w-96
+ h-96
+rounded-sm
+ bg-transparent
+m-auto 
+ text-center
+  border-solid
+   border-1
+">
+<h1
+class="
+text-center
+ text-3xl
+  bg-orange-300
+   p-2 
+  "
+> 
+Admin-Registration
+<br>
+ <span 
+ class="warming-Massage
+  text-sm
+   text-red-700
+    p-1"></span>
+</h1>
+ 
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+         
+
+   
+
+
+
+   <!--  here is for the email  -->
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text" name="emailContent" id="emailContent"
+     class="
+      email
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+        font-semibold
+     placeholder-black
+         "
+     required  placeholder="Email">
+       
+    
+          
+   </div>
+
+   <input type="text" name="type" class="hidden type">
+
+
+   <div class="input-section 
+      first-pw
+   w-full
+   p-2
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input
+      
+      type="password" name="Password" id="GhostPass"
+     class="
+      w-full
+      bg-transparent
+       outline-none
+       border-none
+
+  text-xl 
+        font-semibold
+        placeholder-black
+
+         "
+          placeholder="Password"
+     required >
+     
+
+         
+        <span id="ShowHide" class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           show
+        </span>
+        
+   </div>
+
+  <!-- here we are going to be adding the remember me section and other -->
+   <div class="remember-forget
+     flex
+     justify-between
+      m-2
+    ">
+     <span>
+      <input id="rem" class="pl-1
+      " type="checkbox" name="rember me" id="">
+                 
+        <label for="rem">Remember  Me</label> 
+             </span>
+     </div>
+     
+ <div class="btn
+  m-3">
+     <button 
+     
+     id="sub-log_in"
+     class="
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     "> Log_In</button>
+ </div>
+
+ <span class="
+ login
+  block
+ p-2
+  text-black
+"
+>
+
+Have account  <a href="/admin/j" class="text-blue-800 hover:underline">
+ Sign_Up
+</a>
+</span>  
+          
+           
+            
+      </div>
+ </div> 
+
+<script>
+     
+     const password = document.getElementById("GhostPass");
+
+   const showHide = document.getElementById("ShowHide");
+   const typeofthing = password.type
+    
+      showHide.addEventListener("click",()=>{
+        const typeofthing = password.type
+           if(typeofthing ==="password"  ){
+                   password.type ="text";
+                    showHide.innerHTML = "Hide"
+           }else{
+            password.setAttribute("type","password");;
+                    showHide.innerText = "Show"
+           }
+         
+      })
+
+
+      const subbtn  = document.getElementById("sub-log_in");
+
+         
+
+
+           const email =  document.getElementById("emailContent"); 
+         
+
+
+subbtn.addEventListener("click",()=>{
+   console.log("good thing")
+  const email =  document.getElementById("emailContent"); 
+  const password = document.getElementById("GhostPass");
+ 
+   let info_now = {  
+      email  :email.value,
+       password : password.value
+   }
+   
+  fetch(`/admin/l`,{
+   method : "POST",
+    headers  : {"Content-Type":"application/json"},
+    body : JSON.stringify({info_now})
+    
+  }).then(
+     res=> {
+          if(res.redirected){
+              window.location.href = res.url;
+          } 
+        
+     }
+  )
+})
+
+
+          email.oninput=()=>{
+                  // here is for the style
+                   let pattern = /\S+@\S+\.\S+/
+                    if(pattern.test(email.value)){
+                      email.parentElement.classList.toggle("border-green-500")
+                 email.parentElement.classList.remove("border-red-800");
+                    }else{
+                      email.parentElement.classList.remove("border-green-500");
+              email.parentElement.classList.add("border-red-800")
+
+                    }
+               
+            }
+
+
+
+
+
+
+
+
+
+            
+
+    
+    
+</script>

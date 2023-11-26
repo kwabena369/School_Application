@@ -1,0 +1,57 @@
+
+<div class="wrapper_for_All_poll">
+    
+
+  <div class="w-fit text-center m-auto 
+   border-b-3 border-b-sky-400 border-solid
+   mb-3
+   p-4
+   bg-green-500
+   rounded-lg
+  text-white  text-3xl">
+    Created Polls 
+  </div>
+   
+     <div class="main_thing w-fit  m-auto
+      flex flex-col justify-center space-y-2 border-2 border-blue border-solid rounded-lg">
+         <% if (typeof all !== null &&  typeof all !== 'undefined') { %>
+            <% all.forEach(element => { %>
+               
+             <a class="glober w-fit flex flex-col space-y-2 justify-center" href="/admin/result_poll/now/?id_poll=<%=element._doc._id%>">
+                 <span class="
+                 <% if (element._doc.will_end_At > new Date(Date.now()) ) { %>
+                   <%="bg-green-500"%>
+                    <% }else{ %>
+                          <%="bg-pink-400"%>
+                          <% } %>
+                 cursor-pointer rounded-lg w-80 
+                 justify-center
+                 text-center
+                  flex
+                  flex-col 
+                  p-2 text-xl font-sans">
+                   <small class="text-3xl  
+                     border-solid border-b-2 border-b-blue-500
+                   bg-opacity-20 text-white rounded-lg p-3 ">
+                     <%= element._doc.title %>
+                    </small>
+                     <small class="text-black text-2xl">
+                      <% if (element._doc.will_end_At > new Date(Date.now()) ) { %>
+                        <%="Ends On"%> 
+                        <%=element._doc.will_end_At.toDateString()%>
+                         <% }else{ %>
+                               <%="Has Ended"%>
+                               <% } %>   
+                     </small>
+                     
+                   
+
+                    <div class="option_here text-pink-300 bg-black p-3 rounded-lg">
+                          <%= element.number_of_votors%> People have voted 
+                    </div>
+                 </span>
+                </a>
+            <% }) %>
+         <% } %>
+     </div>
+</div>

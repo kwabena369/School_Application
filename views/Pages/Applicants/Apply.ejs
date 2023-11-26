@@ -1,0 +1,480 @@
+
+  <% if (typeof job_info !== null && typeof job_info !== "undefined") { %>
+
+
+ <div class="wrapper
+ w-full
+ h-4/5
+rounded-sm
+ bg-transparent
+m-auto
+ text-center
+small:h-3/4
+    border-solid
+   border-1
+   border-black
+">
+<h1
+class="
+text-center
+ text-2xl
+  bg-orange-300
+   p-1
+  "
+> 
+         <%=job_info.Job_title%> Application
+<br>
+ <span 
+ class="warming-Massage
+  text-sm
+   text-red-700
+    p-1"></span>
+</h1>
+ 
+      <div class="input-form
+         backdrop-blur-2xl
+           p-2 
+        ">
+         
+           <form action="/apply/job/?job_id=<%=job_info._id %>" method="post" 
+        
+        enctype="multipart/form-data"   >
+ <input type="text" name="handle" id="input_handle" class="hidden">;
+
+ <!-- Email -->
+   <div class="input-section
+   w-full
+   p-1
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input type="text" name="emailContent" id="emailContent"
+     class="
+      email
+      w-full
+     outline-none
+      bg-transparent
+       border-none
+        text-xl 
+         placeholder-black
+        font-semibold
+         "
+         placeholder="Applicant-Email"
+          onblur="checkTosee()"
+     required >
+      
+          
+    
+          
+   </div>
+    
+
+
+<!-- First-Name  -->
+<div class="input-section
+w-full
+p-1
+ border-solid
+ border-black
+  border-b-2
+  m-1 
+relative
+"> 
+  <input type="text" name="fname" id="fname"
+  class="
+   w-full
+  outline-none
+   bg-transparent
+    border-none
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+  required  placeholder="FirstName">
+   
+ 
+       
+ 
+       
+</div>
+
+<!-- Lname -->
+<div class="input-section
+w-full
+p-1
+ border-solid
+ border-black
+  border-b-2
+  m-1 
+relative
+"> 
+  <input type="text" name="lname" id="lname"
+  class="
+   w-full
+  outline-none
+   bg-transparent
+    border-none
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+  required  placeholder="LastName">
+   
+ 
+       
+ 
+       
+</div>
+<!-- for the application letter -->
+<div 
+id="p-file" 
+class="input-section
+w-full
+preview-file
+p-1
+ border-solid
+ border-black
+  border-b-2
+  m-1 
+relative
+"> 
+  <input type="file"  id="app-file" class="hidden" 
+  name="application_letter" required  >
+   <label class="
+   w-full
+  outline-none
+   bg-transparent
+    border-none
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+       for="app-file"
+      >
+     Upload file here</label>
+   
+ 
+       
+ 
+       
+</div>
+ 
+
+   <div class="input-section 
+      first-pw
+   w-full
+   p-2
+    border-solid
+    border-black
+     border-b-2
+     m-1 
+   relative
+   "> 
+     <input
+      
+      type="password" name="Password" id="GhostPass"
+     class="
+      w-full
+      bg-transparent
+       outline-none
+       border-none
+
+  text-xl 
+        font-semibold
+        placeholder-black
+
+         "
+          placeholder="Password"
+     required >
+     
+
+         
+        <span id="ShowHide" class="show-hide
+        absolute
+         justify-center
+        top-1/4
+         right-2
+          bg-slate-950
+           rounded
+            p-1
+             cursor-pointer
+             text-white
+              mb-3
+         ">
+           show
+        </span>
+        
+   </div>
+<div class="input-section
+second-pw
+w-full
+p-2
+ border-solid
+ border-black
+ border-b-2
+  m-1 
+relative
+"> 
+  <input
+  type="password" name="2Password" id="GhostPass2"
+  class="
+   w-full
+   bg-transparent
+   outline-none
+   border-none
+
+     text-xl 
+     font-semibold
+      placeholder-black
+      "
+      placeholder="Confirm-Password"
+
+  required >
+   
+
+      
+    <!--  -->
+     
+</div>
+
+  <!-- here we are going to be adding the remember me section and other -->
+   <div class="remember-forget
+     flex
+     justify-between
+      m-2
+    ">
+     <span>
+      <input id="rem" class="pl-1
+      " type="checkbox" name="rember me" id="">
+                 
+        <label for="rem">Remember  Me</label> 
+             </span>
+     </div>
+     
+ <div class="btn
+  m-3">
+     <button       
+  type="submit"
+      id="sub-btn"
+     class="
+      cursor-pointer
+     bg-gray-800
+    text-white
+     p-3
+      rounded-sm
+
+     "> Submit_Application</button>
+
+
+
+
+
+     
+ </div>
+ <% } %> 
+
+ <span class="
+ login
+  block
+ p-2
+  text-black
+"
+>
+
+Have Application Account ? <a href="/apply/l" class="text-blue-800 hover:underline">
+  Login
+ </a>
+</span>  
+          
+</form>  
+      </div>
+ </div> 
+
+ <!-- for the menu for the handle -->
+
+
+
+ <% if (locals.massage !== null && locals.massage !== 'undefine') { %>
+    <div class="fixed top-0 left-0 w-full h-full
+    bg-black opacity-50 z-20 hidden
+     overlay
+    ">
+        <span class="bg-slate-900 p-2 text-xl
+        ">
+      <%= massage %>
+     </span> 
+ </div>
+ <% } %>
+    
+
+
+
+<script>
+
+// for the file - live preview
+// Declare a variable to store the last selected file
+let lastSelectedFile = null;
+
+function forPreview_file() {
+   console.log(this.files);
+  const themainWrapper = document.getElementById("p-file");
+  let file = this.files[0];
+  
+  const fileReader = new FileReader();
+  let wrapper = document.createElement("div");
+  let cancel = document.createElement("span");
+  let element = document.createElement("span");
+
+  fileReader.addEventListener("loadend", () => {
+    cancel.innerText = "X";
+    cancel.classList.add(
+      "preview-cancel",
+      "absolute",
+      "cursor-pointer",
+      "hover:text-red-800",
+      "duration-150",
+      "right-0",
+      "top-0",
+      "h-full",
+      "text-sm",
+      "text-white",
+      "p-1",
+      "font-semibold",
+      "bg-green-400",
+      "text-center",
+      "rounded-bl-md"
+    );
+    wrapper.classList.add(
+      "p-1",
+      "image-wrapper",
+      "bg-black",
+      "relative",
+      "w-24",
+      "m-auto",
+      "border-solid",
+      "border-2",
+      "rounded-md",
+      "border-yellow-100",
+      "overflow-hidden"
+    );
+    element.innerText = fileReader.result;
+    element.classList.add("rounded-ml", "text-white");
+    wrapper.appendChild(element);
+    wrapper.appendChild(cancel);
+
+    // Check if there is a previous file preview and it is not the same file
+    const previousPreview = themainWrapper.querySelector(".image-wrapper");
+    if (previousPreview && lastSelectedFile !== file) {
+      themainWrapper.removeChild(previousPreview);
+    }
+
+    themainWrapper.appendChild(wrapper);
+
+    // when there is a click on the cancel thing
+    cancel.addEventListener("click", () => {
+      themainWrapper.removeChild(wrapper);
+    });
+
+    // Store the currently selected file as the last selected file
+    lastSelectedFile = file;
+  });
+
+  fileReader.readAsDataURL(file);
+}
+
+ const input_field = document.getElementById("app-file");
+ 
+      input_field.addEventListener("change",forPreview_file)
+     
+     const password = document.getElementById("GhostPass");
+     const passwor2 = document.getElementById("GhostPass2");
+
+   const showHide = document.getElementById("ShowHide");
+   const typeofthing = password.type
+    
+      showHide.addEventListener("click",()=>{
+        const typeofthing = password.type
+           if(typeofthing ==="password"  ){
+                   password.type ="text";
+                    showHide.innerHTML = "Hide"
+           }else{
+            password.setAttribute("type","password");;
+                    showHide.innerText = "Show"
+           }
+         
+      })
+
+
+      const subbtn  = document.getElementById("sub-btn");
+        
+       
+ const warningMassage = document.querySelector(".warming-Massage")
+      //  here is the implementating of the checktosee
+      warningMassage.innerText = ""
+        function checkTosee(){
+          warningMassage.innerText = ""
+           const emailContent = document.getElementById("emailContent").value
+           
+        
+           fetch(`/apply/check-email?email=${emailContent}`).then(
+       res =>
+      res.json()
+        ).then(
+             data =>{
+                if( data.isthere){
+   warningMassage.innerText = "Email is in the systme"
+       subbtn.disabled =  true
+                 }else{
+                  warningMassage.innerText = "GoGo"
+                  subbtn.disabled =  false
+
+   }
+  } 
+   
+              )               
+        }
+         
+
+         const firstpw = document.querySelector(".first-pw")
+         const secondpw = document.querySelector(".second-pw")
+
+        //  here is for the comparing
+           passwor2.addEventListener("input",()=>{
+             if(password.value === passwor2.value){
+                 firstpw.classList.toggle("border-green-500")
+                 secondpw.classList.toggle("border-green-500")
+                 firstpw.classList.remove("border-red-800");
+    secondpw.classList.remove("border-red-800");
+                 console.log("hope is there")
+                passwor2.setCustomValidity("");
+             }else{
+              firstpw.classList.remove("border-green-500");
+    secondpw.classList.remove("border-green-500");
+              firstpw.classList.add("border-red-800")
+                 secondpw.classList.add("border-red-800")
+              console.log("not equal")
+              passwor2.setCustomValidity(" Not equal password");
+
+             }
+             
+             
+           })
+          const email =  document.getElementById("emailContent"); 
+            email.oninput=()=>{
+                  // here is for the style
+                   let pattern = /\S+@\S+\.\S+/
+                    if(pattern.test(email.value)){
+                      email.parentElement.classList.toggle("border-green-500")
+                 email.parentElement.classList.remove("border-red-800");
+                    }else{
+                      email.parentElement.classList.remove("border-green-500");
+              email.parentElement.classList.add("border-red-800")
+
+                    }
+               
+            }
+    
+</script>

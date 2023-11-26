@@ -1,0 +1,92 @@
+
+<div class="w-fit text-center m-auto 
+  border-b-3 border-b-sky-400 border-solid
+  mb-3
+  p-4
+  bg-green-500
+  rounded-lg
+ text-white  text-3xl">
+Result 
+</div>
+<div class="w-full flex flex-col justify-center">
+<% if (typeof option_there !== null && typeof option_there !=='undefined') { %>
+ <div class=" h-96 w-96 graph_here_now 
+  flex  justify-center m-auto
+  border-solid border-2 border-black
+  rounded-md 
+"> 
+   <canvas id="mycango" class="w-full h-full p-3 rounded-lg"></canvas>
+</div>
+<% }else{ %>
+  Goat is the name
+  <% } %>
+</div>
+<!--  for the -->
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+ <!-- for the chat.js thing -->
+<script>
+  
+   
+  let option_there = '<%=option_there%>'.split(",")
+   let  Number_vote = '<%=done_cooling%>'.split(",")
+    let  title = '<%=title%> '
+     
+     
+   
+let colour_array=[];
+if(Number_vote.length === 1){
+  colour_array =["red","green"];
+}else if(Number_vote.length === 2){
+ colour_array =["red","green","blue"]
+}else if(Number_vote.length ===3){
+ colour_array =["red","green","blue","pink"]
+}
+ 
+let vit = document.getElementById("mycango").getContext("2d")
+     let value;
+  //    for the graph
+   let graph_here =new Chart(vit,{
+       type:'bar',
+       data:{
+           labels : option_there,
+            datasets:[{
+               data : Number_vote,
+               backgroundColor : colour_array
+            }]
+       }
+// HERE IS  the unleanr thing 
+,options: {
+    responsive: true,
+       title:{
+           display:true,
+            text : title
+     
+           }
+     ,
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: Math.max(...Number_vote) + 30,
+      
+         title: {
+          display: true,
+          text: 'Number of Votes'
+        }
+      }
+    }     
+
+  }
+
+   })
+
+   
+
+                          
+        
+
+
+
+
+</script>
+
